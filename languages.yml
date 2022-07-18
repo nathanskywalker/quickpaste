@@ -1,0 +1,917 @@
+formatters:
+  default:
+    name: default
+    func: commandFormatter
+    args:
+    - ./bin/pygments/pygmentize
+    - "-f"
+    - html
+    - "-l"
+    - "%LANG%"
+    - "-O"
+    - "nowrap=True,encoding=utf-8"
+  text:
+    name: text
+    func: plainText
+  markdown:
+    name: markdown
+    func: markdown
+  ansi:
+    name: ansi
+    func: commandFormatter
+    args:
+    - ./bin/ansi2html
+    - "--naked"
+  iphonesyslog:
+    name: iphonesyslog
+    func: commandFormatter
+    args:
+    - "./bin/syslog_hl.pl"
+languageGroups:
+- name: Text
+  languages:
+  - id: text
+    name: Plain Text
+    formatter: text
+  - id: ansi
+    name: ANSI
+    formatter: ansi
+  - id: markdown
+    name: Markdown
+    formatter: markdown
+    display_style: markdown
+    suppress_line_numbers: YES
+    extensions: [md]
+    mimetypes: [text/x-markdown]
+  - id: irc
+    name: IRC Log
+- name: Common Languages
+  languages:
+  - id: logos
+    name: Logos + Objective-C
+    extensions: [x, xi, xm, xmi]
+  - extensions: [m, h]
+    id: objective-c
+    alt_ids: [objectivec, obj-c, objc]
+    name: Objective-C
+  - extensions: [mm, hh]
+    id: objective-c++
+    alt_ids: [objectivec++, obj-c++, objc++]
+    name: Objective-C++
+  - extensions: [c, h, idc]
+    mimetypes: [text/x-chdr, text/x-csrc]
+    id: c
+    name: C
+  - extensions: [cpp, hpp, c++, h++, cc, hh, cxx, hxx, C, H, cp, CPP]
+    mimetypes: [text/x-c++hdr, text/x-c++src]
+    id: cpp
+    alt_ids: [c++]
+    name: C++
+  - extensions: [pl, pm]
+    mimetypes: [text/x-perl, application/x-perl]
+    id: perl
+    alt_ids: [pl]
+    name: Perl
+  - id: go
+    name: Go
+    extensions: [go]
+- name: Other Languages
+  languages:
+  - id: iphonesyslog
+    name: "iOS System Log"
+    formatter: iphonesyslog
+  - alt_ids: [py, sage]
+    extensions: [py, pyw, sc, sconstruct, sconscript, tac, sage]
+    id: python
+    mimetypes: [text/x-python, application/x-python]
+    name: python
+  - {id: pycon, name: Python console session}
+  - {id: pytb, name: Python Traceback}
+  - alt_ids: [py3]
+    id: python3
+    mimetypes: [text/x-python3, application/x-python3]
+    name: Python 3
+  - {id: py3tb, name: Python 3.0 Traceback}
+  - alt_ids: [ruby, duby]
+    extensions: [rb, rbw, Rakefile, rake, gemspec, rbx, duby]
+    id: rb
+    mimetypes: [text/x-ruby, application/x-ruby]
+    name: Ruby
+  - alt_ids: [irb]
+    id: rbcon
+    name: Ruby irb session
+  - extensions: [lua, wlua]
+    id: lua
+    mimetypes: [text/x-lua, application/x-lua]
+    name: Lua
+  - alt_ids: [moonscript]
+    id: moon
+    mimetypes: [text/x-moonscript, application/x-moonscript]
+    name: MoonScript
+  - {id: croc, name: Croc}
+  - {id: minid, name: MiniD}
+  - {id: io, name: Io}
+  - id: tcl
+    mimetypes: [text/x-tcl, text/x-script.tcl, application/x-tcl]
+    name: Tcl
+  - {id: factor, name: Factor}
+  - alt_ids: [fy]
+    extensions: [fy, fancypack]
+    id: fancy
+    name: Fancy
+  - {id: dg, name: dg}
+  - alt_ids: [pl6]
+    extensions: [pl, pm, nqp, p6, 6pl, p6l, pl6, 6pm, p6m, pm6, t]
+    id: perl6
+    mimetypes: [text/x-perl6, application/x-perl6]
+    name: Perl6
+  - id: hylang
+    mimetypes: [text/x-hy, application/x-hy]
+    name: Hy
+  - alt_ids: [chaiscript]
+    id: chai
+    mimetypes: [text/x-chaiscript, application/x-chaiscript]
+    name: ChaiScript
+  - alt_ids: [asm]
+    extensions: [s, S]
+    id: gas
+    name: GAS
+  - {id: objdump, name: objdump}
+  - {id: d-objdump, name: d-objdump}
+  - alt_ids: [c++-objdumb, cxx-objdump]
+    extensions: [cpp-objdump, c++-objdump, cxx-objdump]
+    id: cpp-objdump
+    name: cpp-objdump
+  - {id: c-objdump, name: c-objdump}
+  - {id: llvm, name: LLVM}
+  - extensions: [asm, ASM]
+    id: nasm
+    name: NASM
+  - {id: objdump-nasm, name: objdump-nasm}
+  - {id: ca65, name: ca65}
+  - extensions: [d, di]
+    id: d
+    name: D
+  - alt_ids: [pas, pascal, objectpascal]
+    id: delphi
+    name: Delphi
+  - extensions: [ec, eh]
+    id: ec
+    mimetypes: [text/x-echdr, text/x-ecsrc]
+    name: eC
+  - {id: nesc, name: nesC}
+  - extensions: [dylan, dyl, intr]
+    id: dylan
+    name: Dylan
+  - extensions: [f, f90, F, F90]
+    id: fortran
+    name: Fortran
+  - extensions: [vert, frag, geo]
+    id: glsl
+    name: GLSL
+  - extensions: [prolog, pro, pl]
+    id: prolog
+    name: Prolog
+  - alt_ids: [pyx, pyrex]
+    extensions: [pyx, pxd, pxi]
+    id: cython
+    mimetypes: [text/x-cython, application/x-cython]
+    name: Cython
+  - alt_ids: [vapi]
+    extensions: [vala, vapi]
+    id: vala
+    name: Vala
+  - {id: ooc, name: Ooc}
+  - alt_ids: [flx]
+    extensions: [flx, flxh]
+    id: felix
+    name: Felix
+  - alt_ids: [ada95ada2005]
+    extensions: [adb, ads, ada]
+    id: ada
+    name: Ada
+  - alt_ids: [m2]
+    extensions: [def, mod]
+    id: modula2
+    name: Modula-2
+  - alt_ids: [bmax]
+    id: blitzmax
+    name: BlitzMax
+  - alt_ids: [b3d, bplus]
+    extensions: [bb, decls]
+    id: blitzbasic
+    name: BlitzBasic
+  - alt_ids: [nim]
+    extensions: [nim, nimrod]
+    id: nimrod
+    name: Nimrod
+  - {id: fan, name: Fantom}
+  - {id: rust, name: Rust}
+  - alt_ids: [cu]
+    extensions: [cu, cuh]
+    id: cuda
+    name: CUDA
+  - {id: monkey, name: Monkey}
+  - extensions: [swg, i]
+    id: swig
+    name: SWIG
+  - alt_ids: [lid]
+    extensions: [lid, hdp]
+    id: dylan-lid
+    name: DylanLID
+  - alt_ids: [dylan-repl]
+    id: dylan-console
+    name: Dylan session
+  - extensions: [cob, COB, cpy, CPY]
+    id: cobol
+    name: COBOL
+  - extensions: [cbl, CBL]
+    id: cobolfree
+    name: COBOLFree
+  - {id: clay, name: Clay}
+  - extensions: [pike, pmod]
+    id: pike
+    name: Pike
+  - alt_ids: [chpl]
+    id: chapel
+    name: Chapel
+  - {id: eiffel, name: Eiffel}
+  - alt_ids: [i6]
+    id: inform6
+    name: Inform 6
+  - alt_ids: [i7]
+    extensions: [ni, i7x]
+    id: inform7
+    name: Inform 7
+  - {id: i6t, name: Inform 6 template}
+  - alt_ids: [mq4, mq5, mql4, mql5]
+    extensions: [mq4, mq5, mqh]
+    id: mql
+    name: MQL
+  - {id: swift, name: Swift}
+  - {id: smali, name: Smali}
+  - alt_ids: [c#]
+    id: csharp
+    name: C#
+  - {id: nemerle, name: Nemerle}
+  - {id: boo, name: Boo}
+  - alt_ids: [vbnet]
+    extensions: [vb, bas]
+    id: vb.net
+    mimetypes: [text/x-vbnet, text/x-vba]
+    name: VB.net
+  - extensions: [aspx, asax, ascx, ashx, asmx, axd]
+    id: aspx-cs
+    name: aspx-cs
+  - extensions: [aspx, asax, ascx, ashx, asmx, axd]
+    id: aspx-vb
+    name: aspx-vb
+  - extensions: [fs, fsi]
+    id: fsharp
+    name: FSharp
+  - alt_ids: [vfp, clipper, xbase]
+    extensions: [PRG, prg]
+    id: foxpro
+    name: FoxPro
+  - alt_ids: [rkt]
+    extensions: [rkt, rktd, rktl]
+    id: racket
+    mimetypes: [text/x-racket, application/x-racket]
+    name: Racket
+  - alt_ids: [scm]
+    extensions: [scm, ss]
+    id: scheme
+    mimetypes: [text/x-scheme, application/x-scheme]
+    name: Scheme
+  - alt_ids: [cl, lisp, elisp, emacs, emacs-lisp]
+    extensions: [cl, lisp, el]
+    id: common-lisp
+    name: Common Lisp
+  - alt_ids: [cry]
+    id: cryptol
+    name: Cryptol
+  - alt_ids: [hs]
+    id: haskell
+    name: Haskell
+  - {id: agda, name: Agda}
+  - alt_ids: [literate-cryptol, lcryptol]
+    id: lcry
+    name: Literate Cryptol
+  - alt_ids: [literate-haskell, lhaskell]
+    id: lhs
+    name: Literate Haskell
+  - alt_ids: [literate-agda]
+    id: lagda
+    name: Literate Agda
+  - extensions: [sml, sig, fun]
+    id: sml
+    mimetypes: [text/x-standardml, application/x-standardml]
+    name: Standard ML
+  - extensions: [ml, mli, mll, mly]
+    id: ocaml
+    name: OCaml
+  - extensions: [erl, hrl, es, escript]
+    id: erlang
+    name: Erlang
+  - {id: erl, name: Erlang erl session}
+  - {id: opa, name: Opa}
+  - {id: coq, name: Coq}
+  - extensions: [lsp, nl]
+    id: newlisp
+    mimetypes: [text/x-newlisp, application/x-newlisp]
+    name: NewLisp
+  - alt_ids: [nix]
+    id: nixos
+    name: Nix
+  - alt_ids: [ex, exs]
+    extensions: [ex, exs]
+    id: elixir
+    name: Elixir
+  - {id: iex, name: Elixir iex session}
+  - extensions: [kk, kki]
+    id: koka
+    name: Koka
+  - alt_ids: [idr]
+    id: idris
+    name: Idris
+  - alt_ids: [literate-idris, lidris]
+    id: lidr
+    name: Literate Idris
+  - extensions: [cyp, cypher]
+    id: cypher
+    name: Cypher
+  - alt_ids: [v]
+    id: verilog
+    name: verilog
+  - alt_ids: [sv]
+    extensions: [sv, svh]
+    id: systemverilog
+    name: systemverilog
+  - extensions: [vhdl, vhd]
+    id: vhdl
+    name: vhdl
+  - {id: limbo, name: Limbo}
+  - {id: java, name: Java}
+  - {id: scala, name: Scala}
+  - extensions: [gs, gsx, gsp, vark]
+    id: gosu
+    name: Gosu
+  - {id: gst, name: Gosu Template}
+  - {id: groovy, name: Groovy}
+  - alt_ids: [ik]
+    id: ioke
+    name: Ioke
+  - alt_ids: [clj]
+    id: clojure
+    mimetypes: [text/x-clojure, application/x-clojure]
+    name: Clojure
+  - alt_ids: [cljs]
+    id: clojurescript
+    mimetypes: [text/x-clojurescript, application/x-clojurescript]
+    name: ClojureScript
+  - {id: kotlin, name: Kotlin}
+  - {id: xtend, name: Xtend}
+  - {id: aspectj, name: AspectJ}
+  - {id: ceylon, name: Ceylon}
+  - {id: pig, name: Pig}
+  - {id: golo, name: Golo}
+  - alt_ids: [jasminxt]
+    id: jasmin
+    name: Jasmin
+  - alt_ids: [jl]
+    id: julia
+    mimetypes: [text/x-julia, application/x-julia]
+    name: Julia
+  - {id: jlcon, name: Julia console}
+  - {id: mupad, name: MuPAD}
+  - {id: matlab, name: Matlab}
+  - {id: matlabsession, name: Matlab session}
+  - {id: octave, name: Octave}
+  - extensions: [sci, sce, tst]
+    id: scilab
+    name: Scilab
+  - {id: numpy, name: NumPy}
+  - alt_ids: [rout]
+    id: rconsole
+    name: RConsole
+  - alt_ids: [s, r]
+    extensions: [S, R, .Rhistory, .Rprofile, .Renviron]
+    id: splus
+    mimetypes: [text/S-plus, text/S, text/x-r-source, text/x-r, text/x-R, text/x-r-history,
+      text/x-r-profile]
+    name: R
+  - extensions: [jag, bug]
+    id: jags
+    name: JAGS
+  - alt_ids: [winbugs, openbugs]
+    id: bugs
+    name: BUGS
+  - {id: stan, name: Stan}
+  - {id: idl, name: IDL}
+  - {id: rd, name: Rd}
+  - alt_ids: [igorpro]
+    id: igor
+    name: Igor
+  - alt_ids: [mma, nb]
+    extensions: [nb, cdf, nbp, ma]
+    id: mathematica
+    mimetypes: [application/mathematica, application/vnd.wolfram.mathematica, application/vnd.wolfram.mathematica.package,
+      application/vnd.wolfram.cdf]
+    name: Mathematica
+  - extensions: [g, gd, gi, gap]
+    id: gap
+    name: GAP
+  - alt_ids: [bf]
+    extensions: [bf, b]
+    id: brainfuck
+    name: Brainfuck
+  - {id: befunge, name: Befunge}
+  - {id: redcode, name: Redcode}
+  - alt_ids: [moo]
+    id: moocode
+    name: MOOCode
+  - alt_ids: [squeak, st]
+    id: smalltalk
+    name: Smalltalk
+  - {id: logtalk, name: Logtalk}
+  - extensions: [plot, plt]
+    id: gnuplot
+    name: Gnuplot
+  - extensions: [pov, inc]
+    id: pov
+    name: POVRay
+  - {id: applescript, name: AppleScript}
+  - {id: modelica, name: Modelica}
+  - extensions: [r, r3, reb]
+    id: rebol
+    name: REBOL
+  - {id: abap, name: ABAP}
+  - {id: newspeak, name: Newspeak}
+  - alt_ids: [gherkin]
+    id: cucumber
+    name: Gherkin
+  - alt_ids: [asymptote]
+    id: asy
+    name: Asymptote
+  - alt_ids: [postscr]
+    extensions: [ps, eps]
+    id: postscript
+    name: PostScript
+  - alt_ids: [autohotkey]
+    extensions: [ahk, ahkl]
+    id: ahk
+    name: autohotkey
+  - {id: gooddata-cl, name: GoodData-CL}
+  - id: maql
+    mimetypes: [text/x-gooddata-maql, application/x-gooddata-maql]
+    name: MAQL
+  - alt_ids: [proto]
+    id: protobuf
+    name: Protocol Buffer
+  - alt_ids: [hy]
+    extensions: [hy, hyb]
+    id: hybris
+    mimetypes: [text/x-hybris, application/x-hybris]
+    name: Hybris
+  - alt_ids: [gawk, mawk, nawk]
+    id: awk
+    name: Awk
+  - alt_ids: [cf3]
+    id: cfengine3
+    name: CFEngine3
+  - {id: snobol, name: Snobol}
+  - {id: ecl, name: ECL}
+  - {id: urbiscript, name: UrbiScript}
+  - alt_ids: [abl, progress]
+    extensions: [p, cls]
+    id: openedge
+    mimetypes: [text/x-openedge, application/x-openedge]
+    name: OpenEdge ABL
+  - {id: bro, name: Bro}
+  - alt_ids: [msc]
+    id: mscgen
+    name: Mscgen
+  - alt_ids: [menuconfig, linux-config, kernel-config]
+    extensions: [Kconfig, '*Config.in*', external.in*, standard-modules.in]
+    id: kconfig
+    name: Kconfig
+  - {id: vgl, name: VGL}
+  - {id: sp, name: SourcePawn}
+  - extensions: [txt, robot]
+    id: robotframework
+    name: RobotFramework
+  - {id: puppet, name: Puppet}
+  - alt_ids: [nsi, nsh]
+    extensions: [nsi, nsh]
+    id: nsis
+    name: NSIS
+  - {id: spec, name: RPMSpec}
+  - {id: cbmbas, name: CBM BASIC V2}
+  - {id: autoit, name: AutoIt}
+  - alt_ids: [arexx]
+    extensions: [rexx, rex, rx, arexx]
+    id: rexx
+    name: Rexx
+  - {id: apl, name: APL}
+  - {id: lsl, name: LSL}
+  - alt_ids: [ambienttalk, ambienttalk/2]
+    id: at
+    name: AmbientTalk
+  - extensions: [p, pwn, inc]
+    id: pawn
+    name: Pawn
+  - {id: vctreestatus, name: VCTreeStatus}
+  - {id: rsl, name: RSL}
+  - {id: pan, name: Pan}
+  - alt_ids: [red/system]
+    extensions: [red, reds]
+    id: red
+    mimetypes: [text/x-red, text/x-red-system]
+    name: Red
+  - {id: alloy, name: Alloy}
+  - {id: ragel, name: Ragel}
+  - {id: ragel-em, name: Embedded Ragel}
+  - {id: ragel-c, name: Ragel in C Host}
+  - {id: ragel-d, name: Ragel in D Host}
+  - {id: ragel-cpp, name: Ragel in CPP Host}
+  - {id: ragel-objc, name: Ragel in Objective C Host}
+  - alt_ids: [ragel-rb]
+    id: ragel-ruby
+    name: Ragel in Ruby Host
+  - {id: ragel-java, name: Ragel in Java Host}
+  - {id: antlr, name: ANTLR}
+  - extensions: [G, g]
+    id: antlr-python
+    name: ANTLR With Python Target
+  - extensions: [G, g]
+    id: antlr-perl
+    name: ANTLR With Perl Target
+  - alt_ids: [antlr-rb]
+    extensions: [G, g]
+    id: antlr-ruby
+    name: ANTLR With Ruby Target
+  - extensions: [G, g]
+    id: antlr-cpp
+    name: ANTLR With CPP Target
+  - alt_ids: [antlr-c#]
+    extensions: [G, g]
+    id: antlr-csharp
+    name: ANTLR With C# Target
+  - extensions: [G, g]
+    id: antlr-objc
+    name: ANTLR With ObjectiveC Target
+  - extensions: [G, g]
+    id: antlr-java
+    name: ANTLR With Java Target
+  - alt_ids: [antlr-actionscript]
+    extensions: [G, g]
+    id: antlr-as
+    name: ANTLR With ActionScript Target
+  - extensions: [treetop, tt]
+    id: treetop
+    name: Treetop
+  - alt_ids: [basic]
+    extensions: [BAS, bas]
+    id: qbasic
+    name: QBasic
+  - extensions: [rq, sparql]
+    id: sparql
+    name: SPARQL
+  - alt_ids: [sh, ksh]
+    extensions: [sh, ksh, bash, ebuild, eclass, .bashrc, bashrc, .bash_*, bash_*, PKGBUILD]
+    id: bash
+    mimetypes: [application/x-sh, application/x-shellscript]
+    name: Bash
+  - {id: console, name: Bash Session}
+  - alt_ids: [csh]
+    extensions: [tcsh, csh]
+    id: tcsh
+    name: Tcsh
+  - alt_ids: [batch, dosbatch, winbatch]
+    extensions: [bat, cmd]
+    id: bat
+    name: Batchfile
+  - alt_ids: [posh, ps1, psm1]
+    extensions: [ps1, psm1]
+    id: powershell
+    name: PowerShell
+  - {id: shell-session, name: Shell Session}
+  - alt_ids: [postgres]
+    id: postgresql
+    name: PostgreSQL SQL dialect
+  - {id: plpgsql, name: PL/pgSQL}
+  - alt_ids: [postgresql-console, postgres-console]
+    id: psql
+    name: PostgreSQL console (psql)
+  - {id: sql, name: SQL}
+  - {id: mysql, name: MySQL}
+  - {id: sqlite3, name: sqlite3con}
+  - {id: rql, name: RQL}
+  - id: html+php
+    mimetypes: [application/x-php, application/x-httpd-php, application/x-httpd-php3,
+      application/x-httpd-php4, application/x-httpd-php5]
+    name: HTML+PHP
+  - {id: xml+php, name: XML+PHP}
+  - {id: css+php, name: CSS+PHP}
+  - alt_ids: [javascript+php]
+    id: js+php
+    mimetypes: [application/x-javascript+php, text/x-javascript+php, text/javascript+php]
+    name: JavaScript+PHP
+  - {id: erb, name: ERB}
+  - alt_ids: [html+erb, html+ruby]
+    id: rhtml
+    name: RHTML
+  - alt_ids: [xml+ruby]
+    id: xml+erb
+    name: XML+Ruby
+  - alt_ids: [css+ruby]
+    id: css+erb
+    name: CSS+Ruby
+  - alt_ids: [javascript+erb, js+ruby, javascript+ruby]
+    id: js+erb
+    mimetypes: [application/x-javascript+ruby, text/x-javascript+ruby, text/javascript+ruby]
+    name: JavaScript+Ruby
+  - {id: smarty, name: Smarty}
+  - {id: html+smarty, name: HTML+Smarty}
+  - {id: xml+smarty, name: XML+Smarty}
+  - {id: css+smarty, name: CSS+Smarty}
+  - alt_ids: [javascript+smarty]
+    id: js+smarty
+    mimetypes: [application/x-javascript+smarty, text/x-javascript+smarty, text/javascript+smarty]
+    name: JavaScript+Smarty
+  - alt_ids: [jinja]
+    id: django
+    mimetypes: [application/x-django-templating, application/x-jinja]
+    name: Django/Jinja
+  - alt_ids: [html+jinja, htmldjango]
+    id: html+django
+    mimetypes: [text/html+django, text/html+jinja]
+    name: HTML+Django/Jinja
+  - alt_ids: [css+jinja]
+    id: css+django
+    mimetypes: [text/css+django, text/css+jinja]
+    name: CSS+Django/Jinja
+  - alt_ids: [xml+jinja]
+    id: xml+django
+    mimetypes: [application/xml+django, application/xml+jinja]
+    name: XML+Django/Jinja
+  - alt_ids: [javascript+django, js+jinja, javascript+jinja]
+    id: js+django
+    mimetypes: [application/x-javascript+django, application/x-javascript+jinja, text/x-javascript+django,
+      text/x-javascript+jinja, text/javascript+django, text/javascript+jinja]
+    name: JavaScript+Django/Jinja
+  - alt_ids: [kid, xml+genshi, xml+kid]
+    id: genshi
+    mimetypes: [application/x-genshi, application/x-kid]
+    name: Genshi
+  - alt_ids: [html+kid]
+    id: html+genshi
+    name: HTML+Genshi
+  - id: genshitext
+    mimetypes: [application/x-genshi-text, text/x-genshi]
+    name: Genshi Text
+  - alt_ids: [css+genshi]
+    id: css+genshitext
+    name: CSS+Genshi Text
+  - alt_ids: [js+genshi, javascript+genshitext, javascript+genshi]
+    id: js+genshitext
+    mimetypes: [application/x-javascript+genshi, text/x-javascript+genshi, text/javascript+genshi]
+    name: JavaScript+Genshi Text
+  - extensions: [myt, autodelegate]
+    id: myghty
+    name: Myghty
+  - {id: html+myghty, name: HTML+Myghty}
+  - {id: xml+myghty, name: XML+Myghty}
+  - {id: css+myghty, name: CSS+Myghty}
+  - alt_ids: [javascript+myghty]
+    id: js+myghty
+    mimetypes: [application/x-javascript+myghty, text/x-javascript+myghty, text/javascript+mygthy]
+    name: JavaScript+Myghty
+  - extensions: [m, mhtml, mc, mi, autohandler, dhandler]
+    id: mason
+    name: Mason
+  - {id: mako, name: Mako}
+  - {id: html+mako, name: HTML+Mako}
+  - {id: xml+mako, name: XML+Mako}
+  - alt_ids: [javascript+mako]
+    id: js+mako
+    mimetypes: [application/x-javascript+mako, text/x-javascript+mako, text/javascript+mako]
+    name: JavaScript+Mako
+  - {id: css+mako, name: CSS+Mako}
+  - {id: jsp, name: Java Server Page}
+  - alt_ids: [spitfire]
+    extensions: [tmpl, spt]
+    id: cheetah
+    mimetypes: [application/x-cheetah, application/x-spitfire]
+    name: Cheetah
+  - alt_ids: [html+spitfire, htmlcheetah]
+    id: html+cheetah
+    mimetypes: [text/html+cheetah, text/html+spitfire]
+    name: HTML+Cheetah
+  - alt_ids: [xml+spitfire]
+    id: xml+cheetah
+    mimetypes: [application/xml+cheetah, application/xml+spitfire]
+    name: XML+Cheetah
+  - alt_ids: [javascript+cheetah, js+spitfire, javascript+spitfire]
+    id: js+cheetah
+    mimetypes: [application/x-javascript+cheetah, text/x-javascript+cheetah, text/javascript+cheetah,
+      application/x-javascript+spitfire, text/x-javascript+spitfire, text/javascript+spitfire]
+    name: JavaScript+Cheetah
+  - {id: evoque, name: Evoque}
+  - {id: html+evoque, name: HTML+Evoque}
+  - {id: xml+evoque, name: XML+Evoque}
+  - {id: cfs, name: cfstatement}
+  - extensions: [cfm, cfml]
+    id: cfm
+    name: Coldfusion HTML
+  - {id: cfc, name: Coldfusion CFC}
+  - extensions: [vm, fhtml]
+    id: velocity
+    name: Velocity
+  - {id: html+velocity, name: HTML+Velocity}
+  - {id: xml+velocity, name: XML+Velocity}
+  - {id: ssp, name: Scalate Server Page}
+  - {id: tea, name: Tea}
+  - id: html+lasso
+    mimetypes: [text/html+lasso, application/x-httpd-lasso, 'application/x-httpd-lasso[89]']
+    name: HTML+Lasso
+  - {id: xml+lasso, name: XML+Lasso}
+  - {id: css+lasso, name: CSS+Lasso}
+  - alt_ids: [javascript+lasso]
+    id: js+lasso
+    mimetypes: [application/x-javascript+lasso, text/x-javascript+lasso, text/javascript+lasso]
+    name: JavaScript+Lasso
+  - {id: handlebars, name: Handlebars}
+  - extensions: [handlebars, hbs]
+    id: html+handlebars
+    mimetypes: [text/html+handlebars, text/x-handlebars-template]
+    name: HTML+Handlebars
+  - alt_ids: [salt, sls]
+    id: yaml+jinja
+    mimetypes: [text/x-yaml+jinja, text/x-sls]
+    name: YAML+Jinja
+  - {id: liquid, name: liquid}
+  - alt_ids: [cfg, dosini]
+    extensions: [ini, cfg]
+    id: ini
+    name: INI
+  - alt_ids: [jproperties]
+    id: properties
+    name: Properties
+  - alt_ids: [sources.list, debsources]
+    id: sourceslist
+    name: Debian Sourcelist
+  - {id: basemake, name: Base Makefile}
+  - alt_ids: [makefile, mf, bsdmake]
+    extensions: [mak, mk, Makefile, makefile, Makefile.*, GNUmakefile]
+    id: make
+    name: Makefile
+  - alt_ids: [udiff]
+    extensions: [diff, patch]
+    id: diff
+    mimetypes: [text/x-diff, text/x-patch]
+    name: Diff
+  - alt_ids: [latex]
+    extensions: [tex, aux, toc]
+    id: tex
+    mimetypes: [text/x-tex, text/x-latex]
+    name: TeX
+  - alt_ids: [nroff, man]
+    extensions: ['[1234567]', man]
+    id: groff
+    mimetypes: [application/x-troff, text/troff]
+    name: Groff
+  - alt_ids: [aconf, apache]
+    extensions: [.htaccess, apache.conf, apache2.conf]
+    id: apacheconf
+    name: ApacheConf
+  - {id: bbcode, name: BBCode}
+  - alt_ids: [moin]
+    id: trac-wiki
+    name: MoinMoin/Trac Wiki markup
+  - alt_ids: [rest, restructuredtext]
+    extensions: [rst, rest]
+    id: rst
+    mimetypes: [text/x-rst, text/prs.fallenstein.rst]
+    name: reStructuredText
+  - extensions: [vim, .vimrc, .exrc, .gvimrc, _vimrc, _exrc, _gvimrc, vimrc, gvimrc]
+    id: vim
+    name: VimL
+  - alt_ids: [po]
+    extensions: [pot, po]
+    id: pot
+    mimetypes: [application/x-gettext, text/x-gettext, text/gettext]
+    name: Gettext Catalog
+  - alt_ids: [squid.conf, squid]
+    id: squidconf
+    name: SquidConf
+  - alt_ids: [debcontrol]
+    id: control
+    name: Debian Control file
+  - extensions: [dpatch, darcspatch]
+    id: dpatch
+    name: Darcs Patch
+  - extensions: [yaml, yml]
+    id: yaml
+    name: YAML
+  - alt_ids: [lighttpd]
+    id: lighty
+    name: Lighttpd configuration file
+  - {id: nginx, name: Nginx configuration file}
+  - extensions: [cmake, CMakeLists.txt]
+    id: cmake
+    name: CMake
+  - {id: http, name: HTTP}
+  - alt_ids: [pypy]
+    id: pypylog
+    name: PyPy Log
+  - {id: registry, name: reg}
+  - alt_ids: [hxml]
+    id: haxeml
+    name: Hxml
+  - {id: ebnf, name: EBNF}
+  - extensions: [todo.txt, todotxt]
+    id: todotxt
+    name: Todotxt
+  - alt_ids: [dockerfile]
+    extensions: [Dockerfile, docker]
+    id: docker
+    name: Docker
+  - extensions: [html, htm, xhtml, xslt]
+    id: html
+    mimetypes: [text/html, application/xhtml+xml]
+    name: HTML
+  - extensions: [xml, xsl, rss, xslt, xsd, wsdl, wsf]
+    id: xml
+    mimetypes: [text/xml, application/xml, image/svg+xml, application/rss+xml, application/atom+xml]
+    name: XML
+  - alt_ids: [javascript]
+    id: js
+    mimetypes: [application/javascript, application/x-javascript, text/x-javascript,
+      text/javascript]
+    name: JavaScript
+  - {id: json, name: JSON}
+  - {id: css, name: CSS}
+  - alt_ids: [php3, php4, php5]
+    extensions: [php, 'php[345]', inc]
+    id: php
+    name: PHP
+  - alt_ids: [actionscript]
+    id: as
+    mimetypes: [application/x-actionscript, text/x-actionscript, text/actionscript]
+    name: ActionScript
+  - extensions: [xsl, xslt, xpl]
+    id: xslt
+    mimetypes: [application/xsl+xml, application/xslt+xml]
+    name: XSLT
+  - alt_ids: [actionscript3]
+    id: as3
+    mimetypes: [application/x-actionscript3, text/x-actionscript3, text/actionscript3]
+    name: ActionScript 3
+  - {id: mxml, name: MXML}
+  - alt_ids: [haxe, hxsl]
+    extensions: [hx, hxsl]
+    id: hx
+    mimetypes: [text/haxe, text/x-haxe, text/x-hx]
+    name: Haxe
+  - {id: haml, name: Haml}
+  - {id: sass, name: Sass}
+  - {id: scss, name: SCSS}
+  - alt_ids: [objectivej, obj-j, objj]
+    id: objective-j
+    name: Objective-J
+  - alt_ids: [coffeescript, coffee]
+    id: coffee-script
+    name: CoffeeScript
+  - alt_ids: [livescript]
+    id: live-script
+    name: LiveScript
+  - alt_ids: [jbst, jsonml+bst]
+    extensions: [duel, jbst]
+    id: duel
+    mimetypes: [text/x-duel, text/x-jbst]
+    name: Duel
+  - {id: scaml, name: Scaml}
+  - {id: jade, name: Jade}
+  - alt_ids: [xqy, xq, xql, xqm]
+    extensions: [xqy, xquery, xq, xql, xqm]
+    id: xquery
+    mimetypes: [text/xquery, application/xquery]
+    name: XQuery
+  - {id: dtd, name: DTD}
+  - {id: dart, name: Dart}
+  - alt_ids: [lassoscript]
+    extensions: [lasso, 'lasso[89]']
+    id: lasso
+    name: Lasso
+  - {id: qml, name: QML}
+  - {id: ts, name: TypeScript}
+  - id: kal
+    mimetypes: [text/kal, application/kal]
+    name: Kal
+  - extensions: [cirru, cr]
+    id: cirru
+    name: Cirru
+  - {id: mask, name: Mask}
+  - {id: zephir, name: Zephir}
+  - {id: slim, name: Slim}
