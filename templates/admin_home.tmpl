@@ -1,0 +1,21 @@
+{{define "admin_home_title"}}Administration{{end}}
+{{define "admin_home_body"}}
+<div class="paste-toolbox">
+	{{template "home-button"}}
+	<span class="paste-title">
+		<strong>Administration</strong>
+	</span>
+</div>
+<div class="content">
+	<p><a href="/admin/reports"><span class="paste-title">Reports</span></a></p>
+	<p>
+		<form method="POST" action="/admin/promote">
+			<div class="input-prepend phone-expand">
+				<span class="add-on"><i class="icon icon-user"> </i></span>
+				<div class="input-wrapper"><input type="text" name="username" autocomplete="off" placeholder="Username"></div>
+			</div>
+			<button class="btn" type="submit" aria-hidden="true">Promote to Admin</button>
+		</form>
+	</p>
+</div>
+{{end}}

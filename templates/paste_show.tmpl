@@ -1,0 +1,112 @@
+{{define "paste_show_title"}}{{.Obj.ID}}{{end}}
+{{define "paste_show_body"}}
+<div class="paste-toolbox unselectable">
+	{{template "home-button"}}
+	<span class="paste-title">
+		<strong>{{with .Obj.Title}}{{.}}{{else}}Paste {{.Obj.ID}}{{end}}</strong>
+		<span class="paste-subtitle">{{.Obj.Language.Name}}
+			{{if .Obj.Encrypted}}<i class="icon-lock" title="Encrypted"></i>{{end}}{{if pasteWillExpire .Obj}}<i class="icon-clock" data-reftime="{{now.UTC.Unix}}" data-value="{{.Obj.ExpirationTime.UTC.Unix}}" id="expirationIcon"></i>{{end}}
+		</span>
+	</span>
+	<div class="paste-toolbox-buttons pull-right" id="desktop-paste-control-container">
+		<div id="paste-controls">
+			<div class="btn-group">
+				<a title="View Raw" href="{{pasteURL "raw" .Obj}}" class="btn btn-inverse">
+					<i class="icon-file-text icon-large"></i>
+					<span class="button-title">View Raw</span>
+				</a>
+				<a title="Download" href="{{pasteURL "download" .Obj}}" class="btn btn-inverse">
+					<i class="icon-download icon-large"></i>
+					<span class="button-title">Download</span>
+				</a>
+			</div>
+			{{if not .Obj.Encrypted}}
+			<button title="Report" type="button" data-target="#reportModal" data-toggle="modal" class="btn btn-inverse">
+				<i class="icon-flag icon-large"></i>
+				<span class="button-title">Report</span>
+			</button>
+			{{end}}
+		</div>
+		{{if editAllowed .}}
+		<div class="btn-group">
+			<button title="Grant" type="button" data-target="#grantModal" data-toggle="modal" class="btn btn-inverse">
+				<i class="icon-lemon icon-large"></i>
+			</button>
+
+			<a title="Edit" href="{{pasteURL "edit" .Obj}}" class="btn btn-primary">
+				<i class="icon-edit icon-large"></i>
+			</a>
+		</div>
+		{{end}}
+	</div>
+</div>
+{{if not .Obj.Language.SuppressLineNumbers}}<div class="code code-line-numbers unselectable" id="line-numbers" aria-hidden="true"></div>{{end}}
+<div class="code{{if .Obj.Language.DisplayStyle}} code-{{.Obj.Language.DisplayStyle}}{{end}}" id="code">{{render .Obj}}</div>
+<div class="well visible-phone unselectable" id="phone-paste-control-container"></div>
+<div id="reportModal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <form name="reportForm" action="{{pasteURL "report" .Obj}}" method="post">
+        <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3>Report Paste</h3>
+        </div>
+        <div class="modal-body">
+		<p>For what reason do you wish to report {{with .Obj.Title}}<strong>{{.}}</strong>{{else}}paste <strong>{{.Obj.ID}}</strong>{{end}}?</p>
+		<p><select name="reason">
+			<option value="personal">Personal Information</option>
+			<option value="spam">Spam</option>
+		</select></p>
+		</div>
+		<div class="modal-footer">
+		<button type="submit" class="btn btn-danger">Report Paste</button>
+		<button data-dismiss="modal" class="btn" aria-hidden="true">Nevermind</button>
+	</div>
+	</form>
+</div>
+<div id="grantModal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<form name="grantForm" action="{{pasteURL "grant" .Obj}}" method="get">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3>Grant Edit Permission</h3>
+	</div>
+	<div class="modal-body">
+		<p>Are you sure you want to grant permission to another user to edit {{with .Obj.Title}}<strong>{{.}}</strong>{{else}}paste <strong>{{.Obj.ID}}</strong>{{end}}?</p>
+		<p>This is not reversible. Grant links will be valid for 48 hours.</p>
+		<div class="grant-tutorial">
+			<p>Send the following URLs (one per intended editor) to collaborators for redemption.</p>
+		</div>
+		<div style="display: none;" id="grant-item-template" class="grant-item input-prepend">
+			<span class="add-on"><i class="icon-lemon"></i></span>
+			<input type="text"></input>
+		</div>
+		<div id="grantContainer" class="grant-container"></div>
+		<div id="grantError" class="error" style="display:none;">There was an error generating a new grant.</div>
+		<button type="button" id="newGrantButton" class="btn">Generate Grant</button>
+	</div>
+	<div class="modal-footer">
+		<button data-dismiss="modal" class="btn" aria-hidden="true" id="cancelGranting">Nevermind</button>
+	</div>
+</div>
+<script>
+$("#newGrantButton").on("click", function() {
+	$.ajax({
+		"method": "POST",
+		"data": null,
+		"url": "{{pasteURL "grant" .Obj}}",
+		"success": function(e) {
+			var template = $("#grant-item-template");
+			var newItem = template.clone();
+			newItem.attr("id", "").show().find("input").val(e.acceptURL);
+			$("div#grantContainer").append(newItem);
+
+			$("div.grant-tutorial").show();
+			$("button#cancelGranting").text("I'm Done.");
+			$("div#grantError").hide();
+		},
+		"error": function(e) {
+			$("div#grantError").show();
+		},
+		"timeout": 2000, // 2 seconds
+	});
+});
+</script>
+{{end}}
