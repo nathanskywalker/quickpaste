@@ -1,7 +1,7 @@
 {
-  "name": "ghostbin",
+  "name": "QuickPaste",
   "version": "0.0.1",
-  "description": "Spectre",
+  "description": "QuickPaste",
   "main": "main.go",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git@git.howett.net:paste"
   },
-  "author": "Dustin L. Howett <dustin@howett.net>",
+  "author": "Caviar <dustin@howett.net>",
   "license": "GPL",
   "dependencies": {
     "grunt": "^1.0.1",
